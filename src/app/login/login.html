@@ -1,162 +1,119 @@
-
 <div class="login-page">
-  <!-- Brand panel -->
-  <section class="brand-panel">
+
+  <!-- HEADER -->
+  <div class="login-header">
     <div class="brand-header">
-      <div class="brand-logo">V</div>
-      <div class="brand-info">
-        <h2>VietLink</h2>
-        <span>Kết nối giá trị - Kiến tạo tương lai</span>
+      <!-- Logo / brand content can be placed here -->
+    </div>
+  </div>
+
+  <!-- MAIN BODY -->
+  <div class="login-main">
+
+    <!-- Brand panel -->
+    <div class="brand-panel">
+      <div class="brand-content">
+        <!-- Optional brand text or illustration -->
       </div>
     </div>
 
-    <div class="brand-content">
-      <span class="brand-badge">GIẢI PHÁP TÀI CHÍNH SỐ</span>
+    <!-- Login panel -->
+    <div class="login-panel">
+      <div class="login-container">
 
-      <h1>
-        Giải pháp tài chính<br />
-        cho cuộc sống <span>tốt đẹp hơn</span>
-      </h1>
+        <div class="login-title">Đăng nhập</div>
 
-      <p>
-        Chúng tôi luôn đồng hành cùng bạn trên hành trình
-        vì một tương lai thịnh vượng và bền vững.
-      </p>
+        <form class="login-form" (ngSubmit)="onLogin()">
 
-      <div class="brand-features">
-        <div class="feature-item">
-          <span class="feature-icon">◇</span>
-          <div>
-            <strong>An toàn</strong>
-            <small>Bảo mật tuyệt đối</small>
+          <div class="form-group">
+            <label for="username">Tên đăng nhập</label>
+
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">♙</span>
+              <input
+                id="username"
+                name="username"
+                type="text"
+                placeholder="Nhập tên đăng nhập"
+                autocomplete="username"
+                [(ngModel)]="username"
+                required
+              />
+            </div>
           </div>
+
+          <div class="form-group">
+            <label for="password">Mật khẩu</label>
+
+            <div class="input-wrapper">
+              <span class="input-icon" aria-hidden="true">♙</span>
+              <input
+                id="password"
+                name="password"
+                [type]="showPassword ? 'text' : 'password'"
+                placeholder="Nhập mật khẩu"
+                autocomplete="current-password"
+                [(ngModel)]="password"
+                required
+              />
+
+              <button
+                class="password-toggle"
+                type="button"
+                (click)="showPassword = !showPassword"
+                [attr.aria-label]="showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'"
+              >
+                {{ showPassword ? 'Ẩn' : 'Hiện' }}
+              </button>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember-option">
+              <input
+                type="checkbox"
+                [(ngModel)]="rememberMe"
+                name="rememberMe"
+              />
+              <span>Ghi nhớ đăng nhập</span>
+            </label>
+
+            <a href="/forgot-password">Quên mật khẩu?</a>
+          </div>
+
+          <button class="login-button" type="submit">
+            <span>Đăng nhập</span>
+            <span class="button-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <div class="form-divider">
+            <span></span>
+            <small>Hoặc</small>
+            <span></span>
+          </div>
+
+          <button
+            class="otp-button"
+            type="button"
+            (click)="onLoginWithOtp()"
+          >
+            <span class="otp-icon" aria-hidden="true">◇</span>
+            Đăng nhập bằng OTP
+          </button>
+
+        </form>
+
+        <div class="register-prompt">
+          Chưa có tài khoản?
+          <a href="/register">Đăng ký ngay</a>
         </div>
 
-        <div class="feature-item">
-          <span class="feature-icon">ϟ</span>
-          <div>
-            <strong>Nhanh chóng</strong>
-            <small>Giao dịch tức thì</small>
-          </div>
-        </div>
-
-        <div class="feature-item">
-          <span class="feature-icon">◎</span>
-          <div>
-            <strong>Hỗ trợ 24/7</strong>
-            <small>Luôn bên bạn</small>
-          </div>
-        </div>
       </div>
     </div>
 
-    <div class="brand-footer">
-      <span>© 2026 VietLink. All rights reserved.</span>
-      <span>Secure banking experience</span>
-    </div>
-  </section>
+  </div>
 
-  <!-- Login panel -->
-  <main class="login-panel">
-    <div class="language-selector">
-      <span>◎</span>
-      <select aria-label="Ngôn ngữ">
-        <option value="vi">Tiếng Việt</option>
-        <option value="en">English</option>
-        <option value="kr">한국어</option>
-      </select>
-    </div>
+  <!-- FOOTER -->
+  <div class="login-footer"></div>
 
-    <div class="login-container">
-      <div class="welcome-label">Chào mừng trở lại!</div>
-
-      <h1>Đăng nhập tài khoản</h1>
-
-      <p class="login-description">
-        Vui lòng nhập thông tin tài khoản để tiếp tục truy cập
-        vào hệ thống.
-      </p>
-
-      <form class="login-form" (ngSubmit)="onLogin()">
-        <div class="form-group">
-          <label for="username">Tên đăng nhập</label>
-          <div class="input-wrapper">
-            <span class="input-icon">♙</span>
-            <input
-              id="username"
-              name="username"
-              type="text"
-              placeholder="Nhập tên đăng nhập"
-              autocomplete="username"
-              [(ngModel)]="username"
-              required
-            />
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="password">Mật khẩu</label>
-          <div class="input-wrapper">
-            <span class="input-icon">♙</span>
-            <input
-              id="password"
-              name="password"
-              [type]="showPassword ? 'text' : 'password'"
-              placeholder="Nhập mật khẩu"
-              autocomplete="current-password"
-              [(ngModel)]="password"
-              required
-            />
-            <button
-              class="password-toggle"
-              type="button"
-              (click)="showPassword = !showPassword"
-              [attr.aria-label]="showPassword ? 'Ẩn mật khẩu' : 'Hiện mật khẩu'"
-            >
-              {{ showPassword ? 'Ẩn' : 'Hiện' }}
-            </button>
-          </div>
-        </div>
-
-        <div class="form-options">
-          <label class="remember-option">
-            <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe" />
-            <span>Ghi nhớ đăng nhập</span>
-          </label>
-
-          <a href="/forgot-password">Quên mật khẩu?</a>
-        </div>
-
-        <button class="login-button" type="submit">
-          <span>Đăng nhập</span>
-          <span class="button-arrow">→</span>
-        </button>
-
-        <div class="form-divider">
-          <span></span>
-          <small>Hoặc</small>
-          <span></span>
-        </div>
-
-        <button
-          class="otp-button"
-          type="button"
-          (click)="onLoginWithOtp()"
-        >
-          <span class="otp-icon">◇</span>
-          Đăng nhập bằng OTP
-        </button>
-      </form>
-
-      <div class="register-prompt">
-        Chưa có tài khoản?
-        <a href="/register">Đăng ký ngay</a>
-      </div>
-
-      <div class="security-note">
-        <span>◇</span>
-        Thông tin của bạn được bảo vệ an toàn
-      </div>
-    </div>
-  </main>
 </div>
